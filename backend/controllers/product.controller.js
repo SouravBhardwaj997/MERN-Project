@@ -11,7 +11,8 @@ export const getAllProduct = async (req, res) => {
 };
 
 export const createNewProduct = async (req, res) => {
-  const { name, price, imageUrl } = req.body;
+  let { name, price, imageUrl } = req.body;
+  price = Number(price);
   try {
     if (!name || !price || !imageUrl) {
       return res
@@ -29,7 +30,7 @@ export const createNewProduct = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({ success: false, message: error._message });
+    return res.status(500).send({ success: false, message: error.message });
   }
 };
 
@@ -40,8 +41,7 @@ export const deleteProduct = async (req, res) => {
   }
   try {
     const deletedProduct = await Product.findByIdAndDelete(id);
-    console.log(deletedProduct);
-    return res.status(200).send({ success: true });
+    return res.status(200).send({ success: true, data: deletedProduct });
   } catch (error) {
     return res.status(500).send({ success: false, message: error.message });
   }

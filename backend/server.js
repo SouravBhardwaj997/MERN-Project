@@ -15,5 +15,5 @@ app.use("/api/products", productRoute);
 
 app.listen(PORT, () => {
   connectToDB();
-  console.log("Sever is running at port ", PORT);
+  console.log("Server is running at port ", PORT);
 });
