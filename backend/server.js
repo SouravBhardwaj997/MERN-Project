@@ -16,11 +16,12 @@ app.use(express.json());
 app.use("/api/products", productRoute);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend", "dist")));
+  // app.use(express.static(path.join(__dirname, "frontend", "dist")));
   app.get("*", (req, res) => {
-    return res.sendFile(
-      path.resolve(__dirname, "frontend", "dist", "index.html")
-    );
+    // return res.sendFile(
+    //   path.resolve(__dirname, "frontend", "dist", "index.html")
+    // );
+    return res.send("Hey there how are u doing");
   });
 }
 
